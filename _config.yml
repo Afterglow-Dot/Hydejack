@@ -131,7 +131,8 @@ kramdown:
 
 hydejack:
   # Configure the order of complementary content on blog posts
-  post_addons:         [about, newsletter, related, random]
+  # 文章底部附加内容（newsletter 需要 Formspree 表单地址，未配置时表单会是空的，故不启用）
+  post_addons:         [about, related, random]
 
   # Configure the order of complementary content on project pages
   project_addons:      [about, other]
@@ -311,24 +312,3 @@ compress_html:
 
 sass:
   style:               compressed
-
-# Jekyll Compose Defaults
-# ---------------------------------------------------------------------------------------
-
-jekyll_compose:
-  default_front_matter:
-    drafts:
-      layout: post
-      description: >
-        A short ~160 character description of your post for search engines,
-        social media previews, etc.
-    posts:
-      layout: post
-      description: >
-        A short ~160 character description of your post for search engines,
-        social media previews, etc.
-    projects:
-      layout: page
-      description: >
-        A short ~160 character description of your post for search engines,
-        social media previews, etc.
