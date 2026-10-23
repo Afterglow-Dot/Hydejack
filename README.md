@@ -16,7 +16,6 @@
 | `news.md` | 动态列表 `/news/` |
 | `publications.md` | 论文列表 `/publications/`（目前为空） |
 | `projects.md` | 项目列表 `/projects/`（`_projects/` 为空，页面显示占位文案） |
-| `cv.md` | 简历页 `/cv/`（**正文已清空**，只保留标题与描述，需要时自行补充） |
 | `_posts/` | 博客正文，文件名格式 `YYYY-MM-DD-英文标题.md` |
 | `_news/` | 动态条目（collection `news`，永久链接 `/news/:name/`） |
 | `_projects/` | 项目条目（collection `projects`，永久链接 `/projects/:path/`） |
@@ -49,11 +48,6 @@ toc:
 `_featured_categories/`（分类）里建一个同名文件，`slug` 填标签/分类名。
 每个归档页都要写一个 ASCII 的 `permalink`，例如 `_featured_tags/随笔.md` 里的
 `permalink: /blog/tag/essay/`——中文或空格 slug 直接当 URL 会被转义。
-
-## 补写简历
-
-`cv.md` 目前只有 front matter，正文清空了。想恢复时，在 `---` 下面按普通 Markdown 写
-（`##` 教育经历、`## 技能` 之类的分段即可），内容会渲染在 `/cv/`。
 
 ## 本地预览
 
