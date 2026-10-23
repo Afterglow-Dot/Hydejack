@@ -51,7 +51,7 @@ toc:
 
 ## 本地预览
 
-需要 Ruby 3.2+：
+需要 Ruby 3.3+（版本写在 `.ruby-version`，GitHub Actions 也读这个文件）：
 
 ```bash
 bundle install
@@ -60,9 +60,11 @@ bundle exec jekyll serve
 
 ## 部署
 
-推送到 `master` 分支后，GitHub Actions（`.github/workflows/pages.yml`）会自动构建并发布。
-首次使用需要在仓库 **Settings → Pages → Build and deployment → Source** 中选择
-**GitHub Actions**。
+推送到 `master` 分支后，GitHub Actions（`.github/workflows/pages.yml`）会自动构建并发布，
+构建产物随后由 `actions/deploy-pages` 部署到 <https://afterglow-dot.github.io/Hydejack/>。
+
+仓库已在 **Settings → Pages → Build and deployment → Source** 里选好 **GitHub Actions**，
+日常只需要提交并推送即可；构建状态可以在 <https://github.com/Afterglow-Dot/Hydejack/actions> 查看。
 
 `_config.yml` 中的 `baseurl: '/Hydejack'` 对应仓库名；如果仓库改了名字，
 需要同步修改，或改用工作流里的 `--baseurl "${{ steps.pages.outputs.base_path }}"`（已经是这样写的）。

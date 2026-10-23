@@ -47,6 +47,3 @@ _zip
 /assets/js/*hydejack-*
 /_sass/*/__*__/*
 
-# 迁移期间用于比对的原始站点源码（不属于本博客）
-.alfolio-src
-.theme-src
