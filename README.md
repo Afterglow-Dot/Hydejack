@@ -26,6 +26,11 @@
 | `_data/authors.yml` | 作者信息（首页作者卡片、文章页脚使用） |
 | `assets/img/` | 图片，`prof_pic.jpg` 为头像，`sidebar-bg.svg` 为侧栏背景 |
 | `_sass/my-style.scss` | 自定义样式 |
+| `_data/strings.yml` | 界面文案（当前为英文，与原站一致） |
+
+> 主题自带的 `_data/social.yml`（社交平台图标对照表）已删除：本站只用到 GitHub 和邮箱，
+> 而主题的 `social-list-item.html` 对 github / email / twitter 内置了图标与链接前缀。
+> 以后要加 LinkedIn、RSS 等平台时，用 `git show fbf41f5:_data/social.yml > _data/social.yml` 恢复即可。
 
 ## 写一篇新文章
 
