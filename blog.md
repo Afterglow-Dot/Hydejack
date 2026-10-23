@@ -6,7 +6,7 @@ permalink: /blog/
 ---
 
 {% assign tag_docs = site.featured_tags | where: "kind", "tag" | sort: "order" %}
-{% assign cat_docs = site.featured_tags | where: "kind", "category" | sort: "order" %}
+{% assign cat_docs = site.featured_categories | sort: "order" %}
 
 <p class="post-tags">
   <strong>Tags</strong>

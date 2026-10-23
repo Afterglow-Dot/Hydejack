@@ -6,11 +6,13 @@ layout: base
 ---
 
 {% assign posts = site.posts %}
-{% if page.slug %}
-  {% assign by_category = site.categories[page.slug] %}
-  {% assign by_tag = site.tags[page.slug] %}
-  {% if by_category %}{% assign posts = by_category %}{% elsif by_tag %}{% assign posts = by_tag %}{% endif %}
-{% endif %}
+{% comment %}
+  归档页（_featured_tags / _featured_categories 下的文档）用 slug 或 title
+  去 site.tags / site.categories 里取文章；都取不到时退回到全部文章。
+{% endcomment %}
+{% assign by_category = site.categories[page.slug] | default: site.categories[page.title] %}
+{% assign by_tag = site.tags[page.slug] | default: site.tags[page.title] %}
+{% if by_category %}{% assign posts = by_category %}{% elsif by_tag %}{% assign posts = by_tag %}{% endif %}
 {% assign posts = posts | sort: "date" | reverse %}
 
 <article class="page mb6" role="article">
