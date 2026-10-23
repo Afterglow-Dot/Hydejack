@@ -1,7 +1,7 @@
 # Dajie's Homepage
 
 李大杰的个人主页与博客，基于 [Hydejack](https://hydejack.com/)（Jekyll 主题）搭建，
-内容与 [afterglow-dot.github.io](https://afterglow-dot.github.io/) 一致。
+内容迁移自 [afterglow-dot.github.io](https://afterglow-dot.github.io/)。
 
 - 站点地址：<https://afterglow-dot.github.io/Hydejack/>
 - 主题：`jekyll-theme-hydejack` 9.x（免费版）
@@ -14,17 +14,18 @@
 | `index.md` | 首页（`layout: about`）：作者简介 + 最新动态 + 最新文章 |
 | `blog.md` | 文章列表 `/blog/`，含标签与分类入口 |
 | `news.md` | 动态列表 `/news/` |
-| `publications.md` | 论文列表 `/publications/` |
-| `projects.md` | 项目列表 `/projects/` |
-| `cv.md` | 简历 `/cv/` |
+| `publications.md` | 论文列表 `/publications/`（目前为空） |
+| `projects.md` | 项目列表 `/projects/`（`_projects/` 为空，页面显示占位文案） |
+| `cv.md` | 简历页 `/cv/`（**正文已清空**，只保留标题与描述，需要时自行补充） |
 | `_posts/` | 博客正文，文件名格式 `YYYY-MM-DD-英文标题.md` |
 | `_news/` | 动态条目（collection `news`，永久链接 `/news/:name/`） |
 | `_projects/` | 项目条目（collection `projects`，永久链接 `/projects/:path/`） |
 | `_featured_tags/` | 标签页，`slug` 与文章的 `tags` 对应 |
 | `_featured_categories/` | 分类页，`slug` 与文章的 `categories` 对应 |
 | `_layouts/blog.html` | 覆盖主题的 blog 布局，补上标题、描述与正文 |
+| `_includes/news-list.html` | 首页「最新动态」列表 |
 | `_data/authors.yml` | 作者信息（首页作者卡片、文章页脚使用） |
-| `assets/img/` | 图片，`prof_pic.jpg` 为头像 |
+| `assets/img/` | 图片，`prof_pic.jpg` 为头像，`sidebar-bg.svg` 为侧栏背景 |
 | `_sass/my-style.scss` | 自定义样式 |
 
 ## 写一篇新文章
@@ -42,12 +43,17 @@ categories: [日常记录]
 toc:
   sidebar: left
 ---
-
-正文……
 ```
 
 标签和分类如果想在 `/blog/` 顶部出现，需要在 `_featured_tags/`（标签）或
 `_featured_categories/`（分类）里建一个同名文件，`slug` 填标签/分类名。
+每个归档页都要写一个 ASCII 的 `permalink`，例如 `_featured_tags/随笔.md` 里的
+`permalink: /blog/tag/essay/`——中文或空格 slug 直接当 URL 会被转义。
+
+## 补写简历
+
+`cv.md` 目前只有 front matter，正文清空了。想恢复时，在 `---` 下面按普通 Markdown 写
+（`##` 教育经历、`## 技能` 之类的分段即可），内容会渲染在 `/cv/`。
 
 ## 本地预览
 
