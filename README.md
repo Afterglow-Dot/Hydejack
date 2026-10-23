@@ -69,5 +69,5 @@ bundle exec jekyll serve
 
 ## 许可
 
-主题部分版权归 Florian Klampfer 所有，见 `NOTICE.md` 与 `LICENSE.md`；
-站点内容（文章、图片）版权归李大杰所有。
+主题 [Hydejack](https://hydejack.com/) 版权归 Florian Klampfer 所有（GPL-3.0）；
+本站内容（文章、图片）版权归李大杰所有。
