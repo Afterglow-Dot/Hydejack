@@ -262,13 +262,6 @@ exclude:
   - Gemfile.lock
   - functions
   - README.md
-  - CHANGELOG.md
-  - docs
-  - example
-  # 以下是 Hydejack Starter Kit 残留的示例页面，已被本博客的内容页取代
-  - index.html
-  - about.md
-  - posts.md
 include:
   - _routes.json
   - .well-known
