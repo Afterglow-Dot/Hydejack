@@ -1,0 +1,13 @@
+{% assign news_items = site.news | sort: "date" | reverse %}
+{% if news_items.size > 0 %}
+<div class="news-list">
+  <ul>
+    {% for item in news_items limit: 5 %}
+    <li>
+      <span class="news-date">{{ item.date | date: "%Y-%m-%d %H:%M" }}</span>
+      <a href="{{ item.url | relative_url }}">{{ item.content | strip_html | normalize_whitespace }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

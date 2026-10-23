@@ -1,0 +1,32 @@
+---
+# 本地覆盖 Hydejack 的 blog 布局：
+# 原布局只渲染文章卡片，不输出标题、描述和正文，
+# 这里补上页面头部与 {{ content }}，并支持按 tag / category 过滤。
+layout: base
+---
+
+{% assign posts = site.posts %}
+{% if page.slug %}
+  {% assign by_category = site.categories[page.slug] %}
+  {% assign by_tag = site.tags[page.slug] %}
+  {% if by_category %}{% assign posts = by_category %}{% elsif by_tag %}{% assign posts = by_tag %}{% endif %}
+{% endif %}
+{% assign posts = posts | sort: "date" | reverse %}
+
+<article class="page mb6" role="article">
+  <header>
+    <h1 class="page-title">{{ page.title | default: site.blog_name }}</h1>
+    {% include components/message.html text=page.description hide=page.hide_description %}
+  </header>
+
+  {{ content }}
+
+  <div class="post-list">
+  {% for post in posts %}
+    {% include_cached components/post.html post=post no_link_title=page.no_link_title no_excerpt=page.no_excerpt hide_image=page.hide_image %}
+  {% endfor %}
+  </div>
+</article>
+
+{% include components/dingbat.html %}
+{% include body/comments.html %}

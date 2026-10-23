@@ -1,14 +1,59 @@
-.dl-table {
-  a {
-    @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
-      text-underline-offset: .8rem;
-    }
-    @supports not ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
-      padding-bottom: .45rem;
-    }
+// 首页「最新动态」与「最新文章」列表
+.news-list,
+.news-list-full {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  .btn, .gumroad-button  {
-    margin: 1rem 0;
+  li {
+    margin-bottom: .6rem;
   }
+}
+
+.news-list-full {
+  > li {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    margin-bottom: .25rem;
+  }
+}
+
+.news-date {
+  display: inline-block;
+  margin-right: .5rem;
+  font-size: .8125rem;
+  opacity: .65;
+  white-space: nowrap;
+}
+
+// /blog/ 顶部的标签与分类导航
+.post-tags {
+  margin-bottom: 2rem;
+  font-size: .9375rem;
+  line-height: 1.8;
+}
+
+// /projects/ 项目列表
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin: .25rem 0 0;
+  }
+}
+
+.project-category {
+  font-size: .8125rem;
+  opacity: .65;
 }

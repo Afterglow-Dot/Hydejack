@@ -18,22 +18,23 @@ gem "jekyll-theme-hydejack", "~> 9.1"
 
 # gem "jekyll-theme-hydejack", git: "https://github.com/hydecorp/hydejack-pro", tag: "pro/v9.2.0"
 
-# IMPORTANT: The followign gem is used to compile math formulas to 
+# IMPORTANT: The followign gem is used to compile math formulas to
 # KaTeX during site building.
 #
 # There are a couple of things to know about this gem:
-# *  It is not supported on GitHub Pages. 
+# *  It is not supported on GitHub Pages.
 #    You have to build the site on your machine before uploading to GitHub,
 #    or use a more permissive cloud building tool such as Netlify.
 # *  You need some kind of JavaScript runtime on your machine.
-#    Usually installing NodeJS will suffice. 
+#    Usually installing NodeJS will suffice.
 #    For details, see <https://github.com/kramdown/math-katex#documentation>
 #
-# If you're using the MathJax math engine instead, free to remove the line below:
-gem "kramdown-math-katex"
-
-# A JavaScript runtime for Ruby that helps with running the katex gem above.
-gem "duktape"
+# 本站使用 kramdown 内置的 MathJax 引擎（`kramdown.math_engine: mathjax`，
+# 见 _config.yml），因此不需要 KaTeX 和 JS 运行时，构建更省事。
+# 如果以后想换成 KaTeX，取消下面两行注释，并把 _config.yml 里的 math_engine 改回 katex。
+#
+# gem "kramdown-math-katex"
+# gem "duktape"
 
 # Required for `jekyll serve` in Ruby 3
 gem "webrick"
@@ -45,8 +46,6 @@ group :jekyll_plugins do
   gem "jekyll-default-layout"
   gem "jekyll-feed"
   gem "jekyll-optional-front-matter"
-  gem "jekyll-paginate"
-  gem "jekyll-readme-index"
   gem "jekyll-redirect-from"
   gem "jekyll-relative-links"
   gem "jekyll-seo-tag"
@@ -56,7 +55,6 @@ group :jekyll_plugins do
 
   # Non-Github Pages plugins:
   gem "jekyll-last-modified-at"
-  gem "jekyll-compose"
 end
 
 gem 'wdm' if Gem.win_platform?
