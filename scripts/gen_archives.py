@@ -129,9 +129,11 @@ def write_archives(directory, kind, names):
     target = ROOT / directory
     target.mkdir(exist_ok=True)
     written = 0
+    expected = set()
     for index, name in enumerate(names, start=1):
         slug = make_slug(name)
         path = target / ("%s.md" % slug)
+        expected.add(path.name)
         order = ORDER_MAP.get(name, 100 + index)
         content = render(kind, name, order)
         if path.exists() and path.read_text(encoding="utf-8") == content:
@@ -139,6 +141,11 @@ def write_archives(directory, kind, names):
         path.write_text(content, encoding="utf-8", newline="\n")
         written += 1
         print("  %-28s -> %s/%s.md" % (name, directory, slug))
+    # 目录内容完全由本脚本生成，清掉已经不存在的标签 / 分类留下的旧页面
+    for stale in sorted(target.glob("*.md")):
+        if stale.name not in expected:
+            stale.unlink()
+            print("  删除过期归档页 %s/%s" % (directory, stale.name))
     return written
 
 
