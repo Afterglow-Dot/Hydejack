@@ -11,11 +11,11 @@
 
 | 路径 | 说明 |
 | --- | --- |
-| `index.md` | 首页（`layout: about`）：作者简介 + 最新动态 + 最新文章 |
-| `blog.md` | 文章列表 `/blog/`，含标签与分类入口 |
-| `news.md` | 动态列表 `/news/` |
-| `publications.md` | 论文列表 `/publications/`（目前为空） |
-| `projects.md` | 项目列表 `/projects/`（`_projects/` 为空，页面显示占位文案） |
+| `pages/index.md` | 首页（`layout: about`）：作者简介 + 最新动态 + 最新文章 |
+| `pages/blog.md` | 文章列表 `/blog/`，含标签与分类入口 |
+| `pages/news.md` | 动态列表 `/news/` |
+| `pages/publications.md` | 论文列表 `/publications/`（目前为空） |
+| `pages/projects.md` | 项目列表 `/projects/`（`_projects/` 为空，页面显示占位文案） |
 | `_posts/` | 博客正文，文件名格式 `YYYY-MM-DD-英文标题.md` |
 | `_news/` | 动态条目（collection `news`，永久链接 `/news/:name/`） |
 | `_projects/` | 项目条目（collection `projects`，永久链接 `/projects/:path/`） |
@@ -27,6 +27,10 @@
 | `assets/img/` | 图片，`prof_pic.jpg` 为头像，`sidebar-bg.svg` 为侧栏背景 |
 | `_sass/my-style.scss` | 自定义样式 |
 | `_data/strings.yml` | 界面文案（当前为英文，与原站一致） |
+
+> `pages/` 里的 5 个页面都写了显式 `permalink`（`/`、`/blog/`、`/news/`、`/publications/`、`/projects/`），
+> 所以可以随手挪动文件位置而不改变网址；新增页面记得也写上 `permalink`，
+> 否则 URL 会跟着目录走（例如 `pages/foo.md` 会变成 `/pages/foo/`）。
 
 > 主题自带的 `_data/social.yml`（社交平台图标对照表）已删除：本站只用到 GitHub 和邮箱，
 > 而主题的 `social-list-item.html` 对 github / email / twitter 内置了图标与链接前缀。
