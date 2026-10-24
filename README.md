@@ -70,7 +70,8 @@ python3 scripts/gen_archives.py
 
 ## 本地预览
 
-需要 Ruby 3.3+（版本写在 `.ruby-version`，GitHub Actions 也读这个文件）：
+需要 Ruby 3.3+（CI 的版本固定写在 `.github/workflows/pages.yml` 的 `ruby-version` 里，
+本机版本对齐它即可）：
 
 ```bash
 bundle install
