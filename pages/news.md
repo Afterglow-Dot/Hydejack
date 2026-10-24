@@ -17,4 +17,3 @@ permalink: /news/
 {% endfor %}
 </ul>
 
-[返回首页]({{ '/' | relative_url }})
