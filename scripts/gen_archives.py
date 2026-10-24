@@ -34,19 +34,7 @@ SLUG_MAP = {
     "English": "english",
 }
 
-# 归档页在 /blog/ 顶部那一排里的先后顺序（数字小的排前面）
-ORDER_MAP = {
-    "随笔": 1,
-    "生活": 2,
-    "秋天": 3,
-    "合肥": 4,
-    "Solitude": 5,
-    "Life": 6,
-    "Reflection": 7,
-    "English": 8,
-    "日常记录": 1,
-    "Daily Record": 2,
-}
+# 归档页顶部的展示顺序就是文件名顺序（即上面 slug 的字母序），不再手工指定。
 
 FRONT_MATTER_RE = re.compile(r"\A---[ \t]*\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|\Z)", re.S)
 
@@ -108,7 +96,7 @@ def collect():
     return sorted(tags), sorted(categories), len(posts)
 
 
-def render(kind, name, order):
+def render(kind, name):
     if kind == "tag":
         description = "关于「%s」的文章。" % name
     else:
@@ -119,9 +107,8 @@ def render(kind, name, order):
         'title: "%s"\n'
         'slug: "%s"\n'
         "kind: %s\n"
-        "order: %d\n"
         'description: "%s"\n'
-        "---\n" % (name, name, kind, order, description)
+        "---\n" % (name, name, kind, description)
     )
 
 
@@ -130,12 +117,11 @@ def write_archives(directory, kind, names):
     target.mkdir(exist_ok=True)
     written = 0
     expected = set()
-    for index, name in enumerate(names, start=1):
+    for name in names:
         slug = make_slug(name)
         path = target / ("%s.md" % slug)
         expected.add(path.name)
-        order = ORDER_MAP.get(name, 100 + index)
-        content = render(kind, name, order)
+        content = render(kind, name)
         if path.exists() and path.read_text(encoding="utf-8") == content:
             continue
         path.write_text(content, encoding="utf-8", newline="\n")

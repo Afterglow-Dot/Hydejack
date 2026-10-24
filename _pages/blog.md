@@ -5,8 +5,9 @@ description: Recording learning and life
 permalink: /blog/
 ---
 
-{% assign tag_docs = site.featured_tags | where: "kind", "tag" | sort: "order" %}
-{% assign cat_docs = site.featured_categories | sort: "order" %}
+{% comment %} 归档页顺序 = 文件名（slug）字母序，不再手工指定 order。 {% endcomment %}
+{% assign tag_docs = site.featured_tags | where: "kind", "tag" %}
+{% assign cat_docs = site.featured_categories %}
 
 <p class="post-tags">
   <strong>Tags</strong>
