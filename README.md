@@ -79,7 +79,7 @@ bundle exec jekyll serve
 
 ## 部署
 
-推送到 `master` 分支后，GitHub Actions（`.github/workflows/pages.yml`）会自动构建并发布，
+主分支为 `main`（不再是 `master`）。推送到 `main` 后，GitHub Actions（`.github/workflows/pages.yml`）会自动构建并发布，
 构建产物随后由 `actions/deploy-pages` 部署到 <https://afterglow-dot.github.io/Hydejack/>。
 
 仓库已在 **Settings → Pages → Build and deployment → Source** 里选好 **GitHub Actions**，
