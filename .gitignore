@@ -47,3 +47,11 @@ _zip
 /assets/js/*hydejack-*
 /_sass/*/__*__/*
 
+# 标签 / 分类归档页由 scripts/gen_archives.py 在构建时生成
+/_featured_tags/
+/_featured_categories/
+
+
+# Python
+__pycache__/
+*.pyc

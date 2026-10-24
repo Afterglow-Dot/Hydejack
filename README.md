@@ -19,8 +19,9 @@
 | `_posts/` | 博客正文，文件名格式 `YYYY-MM-DD-英文标题.md` |
 | `_news/` | 动态条目（collection `news`，永久链接 `/news/:name/`） |
 | `_projects/` | 项目条目（collection `projects`，永久链接 `/projects/:path/`） |
-| `_featured_tags/` | 标签页，`slug` 与文章的 `tags` 对应 |
-| `_featured_categories/` | 分类页，`slug` 与文章的 `categories` 对应 |
+| `scripts/gen_archives.py` | 扫描文章，自动生成标签 / 分类归档页（构建前运行） |
+| `_featured_tags/` | 标签归档页（**自动生成，不入库**） |
+| `_featured_categories/` | 分类归档页（**自动生成，不入库**） |
 | `_layouts/blog.html` | 覆盖主题的 blog 布局，补上标题、描述与正文 |
 | `_includes/news-list.html` | 首页「最新动态」列表 |
 | `_data/authors.yml` | 作者信息（首页作者卡片、文章页脚使用） |
@@ -53,10 +54,17 @@ toc:
 ---
 ```
 
-标签和分类如果想在 `/blog/` 顶部出现，需要在 `_featured_tags/`（标签）或
-`_featured_categories/`（分类）里建一个同名文件，`slug` 填标签/分类名。
-每个归档页都要写一个 ASCII 的 `permalink`，例如 `_featured_tags/随笔.md` 里的
-`permalink: /blog/tag/essay/`——中文或空格 slug 直接当 URL 会被转义。
+标签和分类**不需要手工建文件**：构建之前 `scripts/gen_archives.py` 会扫描所有文章的
+`tags` 与 `categories`，自动在 `_featured_tags/`、`_featured_categories/` 里生成对应的归档页
+（已有的一律覆盖，删掉的标签也会自动消失）。GitHub Actions 已经替你跑这一步，推送即可；
+只有本地预览时才需要手动执行一次：
+
+```bash
+python3 scripts/gen_archives.py
+```
+
+中文标签的网址片段在脚本顶部的 `SLUG_MAP` 里维护（例如 `随笔 → /blog/tag/essay/`）；
+没有登记的标签会自动取其英文小写连字符形式，转不出纯 ASCII 就直接用原名当网址。
 
 ## 本地预览
 
