@@ -4,13 +4,6 @@ author1:
   name:              李大杰
   email:             2026170686@mail.hfut.edu.cn
 
-  # Used at the bottom of each page and at the top of the `about` layout
-  # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             |
-    合肥工业大学通信工程专业 2026 级硕士研究生，目前研一在读。
-
-    这里是我记录研究生学习和生活的小站。
-
   # This photo will be used in the about section
   picture:           /assets/img/prof_pic.jpg
 
