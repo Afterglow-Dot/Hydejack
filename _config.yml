@@ -231,6 +231,12 @@ hydejack:
 # ----------------------------------------------------------------------------------------
 
 collections:
+  # 独立页面（首页、文章列表、动态、论文、项目、404）
+  # 目录用下划线开头，Jekyll 才不会把 _pages/xxx.md 映射成 /pages/xxx/；
+  # 每个文件都自带 permalink，网址与文件所在位置无关。
+  pages:
+    output:            true
+
   featured_categories:
     permalink:         /blog/category/:name/
     output:            true
