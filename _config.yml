@@ -94,9 +94,11 @@ defaults:
       sitemap:         false
 
   # To show a "News" entry on the about page, we need to mark it as `WebPage`
+  # （动态条目用 `news` 布局：与文章页同样排版，但不显示 Related Posts 等附加区块）
   - scope:
       type:            news
     values:
+      layout:          news
       seo:
         type:          WebPage
 

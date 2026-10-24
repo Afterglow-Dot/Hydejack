@@ -1,0 +1,13 @@
+---
+layout: base
+---
+
+{% comment %}
+  动态（news）详情页布局：与主题的 post 布局同样的正文排版，
+  但**不渲染** post_addons（Related Posts / 关于 / 随机文章），
+  让 "Related Posts" 只出现在博客文章页。
+{% endcomment %}
+
+{% include_cached components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image hide_description=page.hide_description %}
+
+{% include components/dingbat.html %}
