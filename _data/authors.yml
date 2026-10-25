@@ -1,0 +1,16 @@
+# The primary author of this blog.
+# Must be the same as `author` in `_config.yml`.
+author1:
+  name:              Dajie Li
+  email:             2026170686@mail.hfut.edu.cn
+
+  # This photo will be used in the about section
+  picture:           /assets/img/avatar.jpg
+
+  # Social media icons in sidebar
+  # Comment/uncommet to show/hide
+  # Rearrange to change the order in which they appear
+  # You can also provide an absolute URL (starting with https://) instead of usernames
+  social:
+    github:          Afterglow-Dot
+    email:           2026170686@mail.hfut.edu.cn

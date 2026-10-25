@@ -1,0 +1,92 @@
+---
+# 本地覆盖 Hydejack 的 blog 布局：
+# 原布局只渲染文章卡片，不输出标题、描述和正文，
+# 这里补上页面头部与 {{ content }}，并支持按 tag / category 过滤。
+#
+# 分页约定（配合 scripts/gen_pagination.py）：
+#   第 1 页 = _pages/blog.md（permalink: /blog/，带 paginate_page: 1）
+#   第 N 页 = 生成的 _pages/blog-page-N.md（permalink: /blog/page/N/，带 paginate_page: N）
+# 每页篇数取 _config.yml 的 blog_paginate（默认 10），日期倒序。
+# 只有带 paginate_page 的页面才会被切片；标签 / 分类归档页仍然一次列出全部文章。
+layout: base
+---
+
+{% assign posts = site.posts %}
+{% comment %}
+  归档页（_featured_tags / _featured_categories 下的文档）用 slug 或 title
+  去 site.tags / site.categories 里取文章；都取不到时退回到全部文章。
+{% endcomment %}
+{% assign by_category = site.categories[page.slug] | default: site.categories[page.title] %}
+{% assign by_tag = site.tags[page.slug] | default: site.tags[page.title] %}
+{% if by_category %}{% assign posts = by_category %}{% elsif by_tag %}{% assign posts = by_tag %}{% endif %}
+{% assign posts = posts | sort: "date" | reverse %}
+
+{% comment %}
+  分页切片：offset = (页码 - 1) × 每页篇数。
+  总页数用整数除法向上取整：(n + per_page - 1) / per_page，例如 25 篇 / 10 = 3 页。
+{% endcomment %}
+{% assign per_page = site.blog_paginate | default: 10 %}
+{% assign page_number = page.paginate_page | default: 1 %}
+{% if page.paginate_page %}
+  {% assign page_offset = page_number | minus: 1 | times: per_page %}
+  {% assign page_limit = per_page %}
+  {% assign total_pages = posts.size | plus: per_page | minus: 1 | divided_by: per_page %}
+{% else %}
+  {% assign page_offset = 0 %}
+  {% assign page_limit = posts.size %}
+  {% assign total_pages = 1 %}
+{% endif %}
+
+<article class="page mb6" role="article">
+  <header>
+    <h1 class="page-title">{{ page.title | default: site.blog_name }}</h1>
+    {% include components/message.html text=page.description hide=page.hide_description %}
+  </header>
+
+  {{ content }}
+
+  <div class="post-list">
+  {% for post in posts limit: page_limit offset: page_offset %}
+    {% include_cached components/post.html post=post no_link_title=page.no_link_title no_excerpt=page.no_excerpt hide_image=page.hide_image %}
+  {% endfor %}
+  </div>
+
+  {% if page.paginate_page and total_pages > 1 %}
+  <nav class="post-pagination" aria-label="文章分页">
+    <span class="post-pagination-info">第 {{ page_number }} / {{ total_pages }} 页，共 {{ posts.size }} 篇文章</span>
+    <ul class="post-pagination-list">
+      <li>
+        {% if page_number > 1 %}
+          {% assign previous_number = page_number | minus: 1 %}
+          {% if previous_number == 1 %}{% assign previous_url = '/blog/' %}{% else %}{% assign previous_url = '/blog/page/' | append: previous_number | append: '/' %}{% endif %}
+          <a class="post-pagination-link" rel="prev" href="{{ previous_url | relative_url }}">上一页</a>
+        {% else %}
+          <span class="post-pagination-link is-disabled">上一页</span>
+        {% endif %}
+      </li>
+      {% for number in (1..total_pages) %}
+      <li>
+        {% if number == page_number %}
+          <span class="post-pagination-link is-current" aria-current="page">{{ number }}</span>
+        {% else %}
+          {% if number == 1 %}{% assign number_url = '/blog/' %}{% else %}{% assign number_url = '/blog/page/' | append: number | append: '/' %}{% endif %}
+          <a class="post-pagination-link" href="{{ number_url | relative_url }}">{{ number }}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+      <li>
+        {% if page_number < total_pages %}
+          {% assign next_number = page_number | plus: 1 %}
+          {% assign next_url = '/blog/page/' | append: next_number | append: '/' %}
+          <a class="post-pagination-link" rel="next" href="{{ next_url | relative_url }}">下一页</a>
+        {% else %}
+          <span class="post-pagination-link is-disabled">下一页</span>
+        {% endif %}
+      </li>
+    </ul>
+  </nav>
+  {% endif %}
+</article>
+
+{% include components/dingbat.html %}
+{% include body/comments.html %}

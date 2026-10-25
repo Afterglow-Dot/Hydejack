@@ -1,0 +1,118 @@
+// 首页「最新动态」与「最新文章」列表
+.news-list,
+.news-list-full {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: .6rem;
+  }
+}
+
+.news-list-full {
+  > li {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    margin-bottom: .25rem;
+  }
+}
+
+.news-date {
+  display: inline-block;
+  margin-right: .5rem;
+  font-size: .8125rem;
+  opacity: .65;
+  white-space: nowrap;
+}
+
+// /blog/ 顶部的标签与分类导航
+.post-tags {
+  margin-bottom: 2rem;
+  font-size: .9375rem;
+  line-height: 1.8;
+}
+
+// /projects/ 项目列表
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin: .25rem 0 0;
+  }
+}
+
+.project-category {
+  font-size: .8125rem;
+  opacity: .65;
+}
+
+// /blog/ 分页导航（第 2 页起由 scripts/gen_pagination.py 生成）
+// 颜色统一用半透明灰，浅色 / 深色主题下都能看
+.post-pagination {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, .25);
+  font-size: .875rem;
+  text-align: center;
+
+  .post-pagination-info {
+    display: block;
+    margin-bottom: .75rem;
+    font-size: .8125rem;
+    opacity: .6;
+  }
+
+  .post-pagination-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .post-pagination-link {
+    display: inline-block;
+    min-width: 2.4rem;
+    padding: .3rem .55rem;
+    border: 1px solid rgba(128, 128, 128, .35);
+    border-radius: .25rem;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      border-color: currentColor;
+    }
+
+    &.is-current {
+      border-color: currentColor;
+      font-weight: 600;
+    }
+
+    &.is-disabled {
+      border-color: transparent;
+      opacity: .35;
+    }
+  }
+}
