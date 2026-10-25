@@ -17,5 +17,5 @@ permalink: /projects/
 {% endfor %}
 </ul>
 {% else %}
-暂时还没有项目。
+正在建设中，敬请期待。
 {% endif %}
