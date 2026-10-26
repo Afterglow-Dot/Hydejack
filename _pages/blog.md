@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Dajie's Blog
+title: Blog
 description: Recording learning and life
 permalink: /blog/
 paginate_page: 1
