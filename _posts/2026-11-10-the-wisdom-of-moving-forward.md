@@ -5,7 +5,6 @@ date: 2026-11-10 21:00:00 +0800
 description: Reflections on past decisions, embracing imperfections, and the wisdom of moving forward.
 tags: [Decision Making, Growth, Mindset, English]
 categories: [Daily Record]
-toc: true
 ---
 
 > "Accept your past without regret, handle your present with confidence, and face your future without fear."
