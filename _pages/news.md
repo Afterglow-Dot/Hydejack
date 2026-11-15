@@ -10,7 +10,7 @@ permalink: /news/
 <ul class="news-list">
 {% for item in news_items %}
   <li>
-    <span class="news-date">{{ item.date | date: "%Y-%m-%d %H:%M" }}</span>
+    <span class="news-date">{{ item.date | date: "%Y-%m-%d" }}</span>
     <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
   </li>
 {% endfor %}
