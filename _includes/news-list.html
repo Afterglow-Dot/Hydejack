@@ -4,8 +4,7 @@
   <ul>
     {% for item in news_items limit: 5 %}
     <li>
-      <span class="news-date">{{ item.date | date: "%Y-%m-%d %H:%M" }}</span>
-      <a href="{{ item.url | relative_url }}">{{ item.content | strip_html | normalize_whitespace }}</a>
+      <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
     </li>
     {% endfor %}
   </ul>
